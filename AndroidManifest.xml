@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.liubo"
+    android:versionCode="1"
+    android:versionName="1.0" >
+	<uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/> <!-- 程序接收短信权限 -->
+    <uses-permission android:name="android.permission.READ_SMS"/>  <!-- 读短信权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>  
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission> 
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+	<uses-permission android:name="android.permission.WRITE_OWNER_DATA"></uses-permission>
+	<uses-permission android:name="android.permission.READ_OWNER_DATA"></uses-permission>
+	
+	<supports-screens android:largeScreens="true" android:normalScreens="true" android:smallScreens="true"
+    	android:resizeable="true" android:anyDensity="true"/>
+	   <uses-sdk android:minSdkVersion="7" />
+    <application 
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" android:name=".FaultLocationSystemApp" android:debuggable="true" >
+        <activity
+            android:name=".ActivityGroupDemo"
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait"
+        	android:configChanges="orientation|keyboardHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver android:name=".SMSReceiver" android:enabled="true" android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+        <activity android:name=".AlertListAct" android:label="历史故障信息"/>
+        <activity android:name=".ErrorAct" android:label="错误信息"/>
+        <activity android:name=".EditTowerActivity" android:label="编辑杆塔信息"/>
+        <activity android:name=".MapMainActivity" android:launchMode="singleTop" android:label="地图信息"/>
+        <activity android:name=".NewTowerActivity" android:label="添加杆塔信息"/>
+        <activity android:name=".TowerListAct" android:label="杆塔信息"/>
+        <activity android:name=".TowerInfoActivity" android:label="杆塔信息"/>
+        <activity android:name=".AlertRecordActiviry" android:label="历史故障信息"/>
+        <activity android:name=".AlertTowerListActivity" android:label="故障杆塔"/>
+        <activity android:name=".DashboardActivity" android:label="操作列表"/>
+        <service android:name=".AlertService"></service>
+    </application>
+
+</manifest>
